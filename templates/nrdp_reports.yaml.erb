@@ -1,0 +1,16 @@
+---
+:nrdp_url: '<%= @nrdp_url %>'
+:nrdp_token: '<%= @nrdp_token %>'
+<% if @alert_on_fail -%>
+:alert_on_fail: true
+<% else -%>
+:alert_on_fail: false
+<% end -%>
+<% if @alert_on_change -%>
+:alert_on_change: true
+<% else -%>
+:alert_on_change: false
+<% end -%>
+:check_service: '<%= @check_service %>'
+:fail_state: '<%= @fail_state %>'
+:change_state: '<%= @change_state %>'

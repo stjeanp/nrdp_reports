@@ -1,0 +1,81 @@
+{
+  "name": "stjeanp-nrdp_reports",
+  "version": "0.0.1",
+  "author": "Patrick St. Jean",
+  "summary": "Submit notifications for failed or changed catalog runs to Nagios via NRDP",
+  "license": "Apache-2.0",
+  "source": "https://github.com/stjeanp/stjeanp-nrdp_reports",
+  "project_page": "https://github.com/stjeanp/stjeanp-nrdp_reports",
+  "issues_url": "https://github.com/stjeanp/stjeanp-nrdp_reports/issues",
+  "tags": [
+    "report", "reports", "nagios", "NRDP"
+  ],
+  "operatingsystem_support": [
+    {
+      "operatingsystem": "RedHat",
+      "operatingsystemrelease": [
+        "5",
+        "6",
+        "7"
+      ]
+    },
+    {
+      "operatingsystem": "CentOS",
+      "operatingsystemrelease": [
+        "5",
+        "6",
+        "7"
+      ]
+    },
+    {
+      "operatingsystem": "Ubuntu",
+      "operatingsystemrelease": [
+        "10.04",
+        "12.04",
+        "14.04"
+      ]
+    },
+    {
+      "operatingsystem": "Debian",
+      "operatingsystemrelease": [
+        "6",
+        "7"
+      ]
+    },
+    {
+      "operatingsystem": "OracleLinux",
+      "operatingsystemrelease": [
+        "5",
+        "6",
+        "7"
+      ]
+    },
+    {
+      "operatingsystem": "Scientific",
+      "operatingsystemrelease": [
+        "5",
+        "6",
+        "7"
+      ]
+    },
+    {
+      "operatingsystem": "OpenSuSE",
+      "operatingsystemrelease": [
+        "6",
+        "7"
+      ]
+    }
+  ],
+  "requirements": [
+    {
+      "name": "pe",
+      "version_requirement": ">= 3.7.0"
+    },
+    {
+      "name": "puppet",
+      "version_requirement": ">= 3.7.0"
+    }
+  ],
+  "dependencies": [
+  ]
+}
