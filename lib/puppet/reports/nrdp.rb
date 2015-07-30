@@ -2,18 +2,18 @@ require 'puppet'
 
 begin
   require 'nagios_nrdp'
-rescue LoadError => e
-  Puppet.info "You need to install the 'nagios_nrdp' gem first!"
+rescue LoadError => _e
+  Puppet.info 'You need to install the `nagios_nrdp` gem first!'
 end
 
 unless Puppet.version >= '3.0.0'
-  fail "This report processor requires Puppet version 3.0.0 or later"
+  fail 'This report processor requires Puppet version 3.0.0 or later'
 end
 
 Puppet::Reports.register_report(:nrdp) do
   configfile = File.join([File.dirname(Puppet.settings[:config]), 'nrdp_reports.yaml'])
   unless File.exist?(configfile)
-    raise(Puppet::ParseError, "NRDP report config file #{configfile} missing or not readable!")
+    fail Puppet::ParseError, "NRDP report config file #{configfile} missing or not readable!"
   end
   CONFIG = YAML.load_file(configfile)
 
@@ -22,7 +22,7 @@ Puppet::Reports.register_report(:nrdp) do
   DESC
 
   def process
-    output = "Puppet catalog run "
+    output = 'Puppet catalog run '
     case status
     when 'failed'
       return true unless CONFIG[:alert_on_fail]
@@ -40,10 +40,10 @@ Puppet::Reports.register_report(:nrdp) do
       nrdp = Nagios::Nrdp.new(url: CONFIG[:nrdp_url],
                               token: CONFIG[:nrdp_token])
 
-      if nrdp.submit_check(hostname: host,
-                           servicename: CONFIG[:check_service],
-                           state: state,
-                           output: output)
+      nrdp.submit_check(hostname: host,
+                        servicename: CONFIG[:check_service],
+                        state: state,
+                        output: output)
     rescue => e
       Puppet.err("Failed to send NRDP report: #{e.message}")
     end
