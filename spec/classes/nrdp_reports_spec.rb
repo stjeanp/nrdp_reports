@@ -6,6 +6,7 @@ describe 'nrdp_reports', :type => :class do
     it { should contain_class('nrdp_reports') }
     it { should contain_class('nrdp_reports::params') }
     it { should contain_file('nrdp_reports-yaml-config').with(:owner => 'puppet') }
+    it { should contain_package('nagios_nrdp').with_provider('gem') }
   end
 
   context 'pe' do
@@ -13,6 +14,7 @@ describe 'nrdp_reports', :type => :class do
     it { should contain_class('nrdp_reports') }
     it { should contain_class('nrdp_reports::params') }
     it { should contain_file('nrdp_reports-yaml-config').with(:owner => 'pe-puppet') }
+    it { should contain_package('nagios_nrdp').with_provider('pe_gem') }
   end
 
   context 'puppet 4' do
@@ -20,5 +22,6 @@ describe 'nrdp_reports', :type => :class do
     it { should contain_class('nrdp_reports') }
     it { should contain_class('nrdp_reports::params') }
     it { should contain_file('nrdp_reports-yaml-config').with(:owner => 'puppet') }
+    it { should contain_package('nagios_nrdp').with_provider('gem') }
   end
 end
