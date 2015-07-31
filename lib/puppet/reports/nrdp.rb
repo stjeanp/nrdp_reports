@@ -6,8 +6,8 @@ rescue LoadError => _e
   Puppet.info 'You need to install the `nagios_nrdp` gem first!'
 end
 
-unless Puppet.version >= '3.0.0'
-  fail 'This report processor requires Puppet version 3.0.0 or later'
+unless Puppet.version >= '4.2.0'
+  fail 'This report processor requires Puppet version 4.2.0 or later'
 end
 
 Puppet::Reports.register_report(:nrdp) do
