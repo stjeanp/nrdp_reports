@@ -56,9 +56,6 @@ class nrdp_reports (
   $check_service   = $nrdp_reports::params::check_service,
   $fail_state      = $nrdp_reports::params::fail_state,
   $change_state    = $nrdp_reports::params::change_state,
-  $puppet_user     = $nrdp_reports::params::puppet_user,
-  $puppet_confdir  = $nrdp_reports::params::puppet_confdir,
-  $gem_provider    = $nrdp_reports::params::gem_provider,
 ) inherits nrdp_reports::params {
 
   validate_string($nrdp_url)
@@ -68,20 +65,17 @@ class nrdp_reports (
   validate_string($check_service)
   validate_integer($fail_state)
   validate_integer($change_state)
-  validate_string($puppet_user)
-  validate_string($gem_provider)
-  validate_absolute_path($puppet_confdir)
 
   package {'nagios_nrdp':
-    ensure   => present,
-    provider => $gem_provider,
+    ensure   => latest,
+    provider => 'puppet_gem',
   }
 
   file {'nrdp_reports-yaml-config':
     ensure  => present,
-    path    => "${puppet_confdir}/nrdp_reports.yaml",
-    mode    => '0640',
-    owner   => $puppet_user,
+    path    => "${::puppet_confdir}/nrdp_reports.yaml",
+    mode    => '0644',
+    owner   => 'root',
     group   => 'root',
     content => template("${module_name}/nrdp_reports.yaml.erb"),
   }
